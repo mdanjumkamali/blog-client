@@ -45,7 +45,7 @@ const Singup = () => {
   return (
     <div className="flex h-screen">
       {/* form */}
-      <div className="w-[40%] flex items-center justify-center">
+      <div className="w-full md:w-[40%] flex items-center justify-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -96,17 +96,14 @@ const Singup = () => {
             <Button type="submit">Submit</Button>
             <FormDescription>
               Already have account?
-              <Link href={"/login"} className="text-black">
-                {" "}
-                Login
-              </Link>
+              <Link href={"/login"}> Login</Link>
             </FormDescription>
           </form>
         </Form>
       </div>
 
       {/* img */}
-      <div className="w-[60%] bg-red-200"></div>
+      <div className="hidden md:block w-[60%] bg-red-200"></div>
     </div>
   );
 };
