@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div className="flex h-screen">
       {/* form */}
-      <div className="w-[40%] flex items-center justify-center">
+      <div className=" w-full md:w-[40%] flex items-center justify-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -78,17 +78,14 @@ const Login = () => {
             <Button type="submit">Submit</Button>
             <FormDescription>
               Create new account?
-              <Link href={"/singup"} className="text-black">
-                {" "}
-                Singup
-              </Link>
+              <Link href={"/singup"}> Singup</Link>
             </FormDescription>
           </form>
         </Form>
       </div>
 
       {/* img */}
-      <div className="w-[60%] bg-red-200"></div>
+      <div className="hidden md:block w-[60%] bg-red-200"></div>
     </div>
   );
 };
