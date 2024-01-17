@@ -16,13 +16,52 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useState } from "react";
 
+interface link {
+  id: number;
+  label: string;
+  link: string;
+}
+
+const links: link[] = [
+  {
+    id: 1,
+    label: "Home",
+    link: "/",
+  },
+  {
+    id: 2,
+    label: "AI",
+    link: "/",
+  },
+  {
+    id: 3,
+    label: "WEB3",
+    link: "/",
+  },
+  {
+    id: 4,
+    label: "REACTJS",
+    link: "/",
+  },
+  {
+    id: 5,
+    label: "CLOUD",
+    link: "/",
+  },
+];
+
 const Navbar = () => {
   const { setTheme } = useTheme();
   const [menu, setMenu] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [active, setActive] = useState<number | null>(null);
 
   const handleToggle = () => {
     setMenu(!menu);
+  };
+
+  const handleActive = (id: number) => {
+    setActive(id);
   };
   return (
     <div className="flex gap-6 items-center">
@@ -30,9 +69,20 @@ const Navbar = () => {
         Blog
       </div>
       <div className="hidden md:flex items-center gap-8 flex-1 ml-9 text-lg">
-        <Link href={"/"}>Home</Link>
-        <Link href={"/"}>Tech</Link>
-        <Link href={"/"}>AI</Link>
+        {links.map((link) => (
+          <Link
+            href={link.link}
+            key={link.label}
+            className={
+              active === link.id
+                ? "border-b-2 border-black dark:border-white"
+                : "hover:border-b-2 dark:hover:border-white hover:border-black"
+            }
+            onClick={() => handleActive(link.id)}
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
 
       {/* dark mode */}
@@ -69,15 +119,26 @@ const Navbar = () => {
       </div>
 
       {menu && (
-        <div className="absolute h-screen top-0 right-0 bg-black  w-[70%] transition ease-in-out">
-          <div className="absolute right-4 top-4">
+        <div className="absolute h-screen top-0 right-0 bg-white dark:bg-black text-black dark:text-white  w-[70%] transition ease-in-out">
+          <div className="absolute right-4 top-4  cursor-pointer">
             <Cross1Icon className="w-6 h-6" onClick={handleToggle} />
           </div>
           <div className="flex flex-col items-center justify-center mt-40">
-            <div className="flex flex-col gap-2 text-2xl text-white">
-              <Link href={"/"}>Home</Link>
-              <Link href={"/"}>Tech</Link>
-              <Link href={"/"}>AI</Link>
+            <div className="flex flex-col gap-2 text-2xl ">
+              {links.map((link) => (
+                <Link
+                  href={link.link}
+                  key={link.label}
+                  className={
+                    active === link.id
+                      ? "border-b-2 border-white"
+                      : "hover:border-b-2 dark:hover:border-white hover:border-black "
+                  }
+                  onClick={() => handleActive(link.id)}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
             <div className="mt-4">
               <Button asChild>
