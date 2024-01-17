@@ -13,7 +13,7 @@ const data: SidebarItem[] = [
   {
     id: 1,
     title: "The Latest",
-    icons: "/latest.svg",
+    icons: "/newspaper.png",
   },
   {
     id: 2,
@@ -52,14 +52,12 @@ const Sidebar = () => {
           className={
             active === item.id
               ? "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer bg-black text-white dark:bg-white dark:text-black"
-              : "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer hover:bg-black dark:hover:bg-white"
+              : "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
           }
           onClick={() => onActive(item.id)}
         >
           <Image src={item.icons} alt={item.title} width={30} height={30} />
-          <h4 className="text-lg font-semibold dark hover:text-black ">
-            {item.title}
-          </h4>
+          <h4 className="text-lg font-semibold  ">{item.title}</h4>
         </div>
       ))}
     </div>
