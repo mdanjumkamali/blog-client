@@ -18,22 +18,22 @@ const data: SidebarItem[] = [
   {
     id: 2,
     title: "FRONTEND",
-    icons: "/latest.svg",
+    icons: "/frontend.png",
   },
   {
     id: 3,
     title: "BACKEND",
-    icons: "/latest.svg",
+    icons: "/backend.png",
   },
   {
     id: 4,
     title: "WEB 3",
-    icons: "/latest.svg",
+    icons: "/network.png",
   },
   {
     id: 5,
     title: "TRENDS",
-    icons: "/latest.svg",
+    icons: "/trends.png",
   },
 
   // Add more items as needed
@@ -51,8 +51,8 @@ const Sidebar = () => {
           key={item.id}
           className={
             active === item.id
-              ? "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer bg-black text-white dark:bg-white dark:text-black"
-              : "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+              ? "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer bg-[#F2F1EB] text-black dark:bg-white dark:text-black"
+              : "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer hover:bg-[#F2F1EB] hover:text-black dark:hover:bg-[#F2F1EB] dark:hover:text-black"
           }
           onClick={() => onActive(item.id)}
         >
