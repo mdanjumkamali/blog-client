@@ -60,9 +60,7 @@ const tag: SidebarTag[] = [
 
 const Sidebar = () => {
   const [active, setActive] = useState<number | null>(null);
-  const onActive = (id: number) => {
-    setActive(id);
-  };
+
   return (
     <div>
       {/* title */}
@@ -75,7 +73,7 @@ const Sidebar = () => {
                 ? "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer bg-[#F2F1EB] text-black dark:bg-white dark:text-black"
                 : "flex items-center gap-2 dark mb-2 rounded-md p-1 cursor-pointer hover:bg-[#F2F1EB] hover:text-black dark:hover:bg-[#F2F1EB] dark:hover:text-black"
             }
-            onClick={() => onActive(item.id)}
+            onClick={() => setActive(item.id)}
           >
             <Image src={item.icons} alt={item.title} width={30} height={30} />
             <h4 className="text-lg font-semibold  ">{item.title}</h4>
