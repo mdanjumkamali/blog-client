@@ -4,40 +4,7 @@ import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
 import DarkMode from "../darkmode/DarkMode";
-
-interface link {
-  id: number;
-  label: string;
-  link: string;
-}
-
-const links: link[] = [
-  {
-    id: 1,
-    label: "Home",
-    link: "/",
-  },
-  {
-    id: 2,
-    label: "AI",
-    link: "/",
-  },
-  {
-    id: 3,
-    label: "WEB3",
-    link: "/",
-  },
-  {
-    id: 4,
-    label: "REACTJS",
-    link: "/",
-  },
-  {
-    id: 5,
-    label: "CLOUD",
-    link: "/",
-  },
-];
+import { links } from "@/constants";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);

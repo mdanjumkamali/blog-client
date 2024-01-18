@@ -2,61 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-
-interface SidebarItem {
-  id: number;
-  title: string;
-  icons: string;
-}
-
-interface SidebarTag {
-  tag: string;
-}
-
-const data: SidebarItem[] = [
-  {
-    id: 1,
-    title: "The Latest",
-    icons: "/newspaper.png",
-  },
-  {
-    id: 2,
-    title: "FRONTEND",
-    icons: "/frontend.png",
-  },
-  {
-    id: 3,
-    title: "BACKEND",
-    icons: "/backend.png",
-  },
-  {
-    id: 4,
-    title: "WEB 3",
-    icons: "/network.png",
-  },
-  {
-    id: 5,
-    title: "TRENDS",
-    icons: "/trends.png",
-  },
-
-  // Add more items as needed
-];
-
-const tag: SidebarTag[] = [
-  {
-    tag: "#frontend",
-  },
-  {
-    tag: "#backend",
-  },
-  {
-    tag: "#web3",
-  },
-  {
-    tag: "#ai",
-  },
-];
+import { Item as data, tag } from "@/constants";
 
 const Sidebar = () => {
   const [active, setActive] = useState<number | null>(null);
