@@ -60,9 +60,6 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
-  const handleActive = (id: number) => {
-    setActive(id);
-  };
   return (
     <div className="flex gap-6 items-center">
       <div className="text-2xl flex-1 md:flex-none md:text-4xl font-semibold ">
@@ -78,7 +75,7 @@ const Navbar = () => {
                 ? "border-b-2 border-black dark:border-white"
                 : "hover:border-b-2 dark:hover:border-white hover:border-black"
             }
-            onClick={() => handleActive(link.id)}
+            onClick={() => setActive(link.id)}
           >
             {link.label}
           </Link>
@@ -134,7 +131,7 @@ const Navbar = () => {
                       ? "border-b-2 border-white"
                       : "hover:border-b-2 dark:hover:border-white hover:border-black "
                   }
-                  onClick={() => handleActive(link.id)}
+                  onClick={() => setActive(link.id)}
                 >
                   {link.label}
                 </Link>
