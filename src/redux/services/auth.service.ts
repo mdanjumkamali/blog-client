@@ -1,25 +1,19 @@
-import { Signup, Login } from "@/interfaces/auth.interface";
-import { UserState } from "../slices/user.slice";
+import { Login, Signup } from "@/interfaces/auth.interface";
+import { httpsClient } from "./http.client";
 
-interface AuthResponse extends UserState {
-  token: string;
-  isAuthenticated: boolean;
+interface AuthResponse {
+  id: number;
+  name: string;
+  email: string;
+  accessToken: string;
 }
 
 export const signupService = async (input: Signup): Promise<AuthResponse> => {
-  return {
-    name: "anjum kamali",
-    email: "anjum@email.com",
-    token: "sddsd",
-    isAuthenticated: true,
-  };
+  const response = await httpsClient.post<AuthResponse>("/auth/signup", input);
+  return response.data;
 };
 
 export const loginService = async (input: Login): Promise<AuthResponse> => {
-  return {
-    name: "anjum",
-    email: "anjum@email.com",
-    token: "sddsd",
-    isAuthenticated: true,
-  };
+  const response = await httpsClient.post<AuthResponse>("/auth/login", input);
+  return response.data;
 };
