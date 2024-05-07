@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginThunk } from "@/redux/thunks/auth.thunk";
+import { useRouter } from "next/navigation";
 
 // Define a TypeScript interface to describe the form data structure
 interface LoginFormData {
@@ -37,7 +38,7 @@ const loginSchema = z.object({
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
-
+  const router = useRouter();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
@@ -45,7 +46,7 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     try {
       await dispatch(loginThunk(data)).unwrap();
-
+      router.push("/");
       toast.success("Login Successfully!");
     } catch (error: any) {}
   };

@@ -2,10 +2,14 @@ import { Login, Signup } from "@/interfaces/auth.interface";
 import { httpsClient } from "./http.client";
 
 interface AuthResponse {
-  id: number;
-  name: string;
-  email: string;
-  accessToken: string;
+  token: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    token: string;
+    avatar: string;
+  };
 }
 
 export const signupService = async (input: Signup): Promise<AuthResponse> => {
