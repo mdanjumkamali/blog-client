@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { logout } from "../redux/slices/auth.slice";
 import store from "../redux/store";
+import Cookies from "js-cookie";
 
 // Define an interface for the expected error response
 interface ErrorResponse {
@@ -19,7 +20,16 @@ class httpClient {
       withCredentials: true,
     });
 
-    this.client.interceptors.request.use((config) => config);
+    this.client.interceptors.request.use(
+      (config) => {
+        const token = Cookies.get("authToken");
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
 
     this.client.interceptors.response.use(
       (response) => response,

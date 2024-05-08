@@ -4,12 +4,14 @@ export interface UserState {
   name: string;
   email: string;
   avatar: string;
+  authorId: string;
 }
 
 const initialState: UserState = {
   name: "",
   email: "",
   avatar: "",
+  authorId: "",
 };
 
 const userSlice = createSlice({
@@ -20,6 +22,7 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.avatar = action.payload.avatar;
+      state.authorId = action.payload.authorId;
     },
   },
 });

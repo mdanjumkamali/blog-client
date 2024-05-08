@@ -9,6 +9,7 @@ interface AuthResponse {
     email: string;
     token: string;
     avatar: string;
+    authorId: string;
   };
 }
 
@@ -19,5 +20,6 @@ export const signupService = async (input: Signup): Promise<AuthResponse> => {
 
 export const loginService = async (input: Login): Promise<AuthResponse> => {
   const response = await httpsClient.post<AuthResponse>("/auth/login", input);
+  console.log(response.data.user.authorId);
   return response.data;
 };
