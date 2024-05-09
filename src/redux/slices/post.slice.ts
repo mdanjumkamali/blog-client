@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post } from "@/interfaces/post.interface";
-import { fetchPostsThunk } from "@/redux/thunks/post.thunk";
+import { fetchPostsThunk, postByIdThunk } from "@/redux/thunks/post.thunk";
 
 interface PostState {
   posts: Post[];
+  selectedPost?: Post;
   loading: boolean;
   error?: string;
 }
@@ -11,6 +12,7 @@ interface PostState {
 const initialState: PostState = {
   posts: [],
   loading: false,
+  selectedPost: undefined,
 };
 
 const postSlice = createSlice({
@@ -39,7 +41,21 @@ const postSlice = createSlice({
           state.loading = false;
           state.error = action.payload;
         }
-      );
+      )
+      .addCase(postByIdThunk.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        postByIdThunk.fulfilled,
+        (state, action: PayloadAction<Post>) => {
+          state.loading = false;
+          state.selectedPost = action.payload; // Store the fetched post
+        }
+      )
+      .addCase(postByIdThunk.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

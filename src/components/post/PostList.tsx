@@ -41,6 +41,7 @@ const PostList = () => {
       {posts.map((post, index) => (
         <PostCard
           key={index}
+          id={post.id}
           title={post.title}
           content={post.content}
           createdAt={post.createdAt}

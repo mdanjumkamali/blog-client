@@ -10,3 +10,8 @@ export const getPostService = async (): Promise<Post[]> => {
   const response = await httpsClient.get<Post[]>("post/all-posts");
   return response.data;
 };
+
+export const getPostByIdService = async (id: string): Promise<Post> => {
+  const response = await httpsClient.get<Post>(`/post/${id}`);
+  return response.data;
+};

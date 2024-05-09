@@ -1,5 +1,9 @@
 import { Post } from "@/interfaces/post.interface";
-import { createPostService, getPostService } from "@/services/post.service";
+import {
+  createPostService,
+  getPostByIdService,
+  getPostService,
+} from "@/services/post.service";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addPost } from "../slices/post.slice";
 
@@ -36,6 +40,29 @@ export const createPostThunk = createAsyncThunk(
 
       const post = await createPostService(newPost);
       thunkAPI.dispatch(addPost(post));
+    } catch (error) {
+      let errorMessage = "An error occurred";
+
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const postByIdThunk = createAsyncThunk(
+  "post/fetchById",
+  async (id: string, thunkAPI) => {
+    try {
+      const post = await getPostByIdService(id);
+
+      if (post) {
+        return post;
+      }
+
+      throw new Error("Unexpected response format");
     } catch (error) {
       let errorMessage = "An error occurred";
 

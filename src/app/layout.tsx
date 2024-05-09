@@ -20,8 +20,8 @@ export default function RootLayout({
     <html lang="en">
       <ReduxProvider>
         <body className={inter.className}>
-          {children}
-          <Toaster position="top-center" />{" "}
+          <main>{children}</main>
+          <Toaster position="top-center" />
         </body>
       </ReduxProvider>
     </html>

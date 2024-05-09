@@ -2,15 +2,24 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface PostCardProps {
+  id?: number;
   title: string;
   content: string;
   createdAt?: string;
   authorName: string;
 }
 
-const PostCard = ({ title, content, createdAt, authorName }: PostCardProps) => {
+const PostCard = ({
+  id,
+  title,
+  content,
+  createdAt,
+  authorName,
+}: PostCardProps) => {
   return (
     <div className="flex flex-col lg:flex-row gap-5 mt-10 p-3">
       <div className="border w-full lg:w-2/5 h-[200px]">
@@ -36,7 +45,9 @@ const PostCard = ({ title, content, createdAt, authorName }: PostCardProps) => {
             {content.length > 100 ? `${content.slice(0, 100)}...` : content}
           </span>
         </div>
-        <Button className="mt-4">Read More</Button>
+        <Link href={`/article/${id}`}>
+          <Button className="mt-4">Read More</Button>
+        </Link>
       </div>
     </div>
   );
