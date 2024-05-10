@@ -6,6 +6,7 @@ import authReducer from "./slices/auth.slice";
 import userReducer from "./slices/user.slice";
 import postReducer from "./slices/post.slice";
 import authorReducer from "./slices/author.slice";
+import commentReducer from "./slices/comment.slice";
 
 const persistConfig: PersistConfig<any> = {
   key: "auth",
@@ -21,6 +22,7 @@ const store = configureStore({
     user: userReducer,
     post: postReducer,
     author: authorReducer,
+    comment: commentReducer,
   },
 });
 

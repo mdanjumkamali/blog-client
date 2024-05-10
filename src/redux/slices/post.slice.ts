@@ -49,7 +49,7 @@ const postSlice = createSlice({
         postByIdThunk.fulfilled,
         (state, action: PayloadAction<Post>) => {
           state.loading = false;
-          state.selectedPost = action.payload; // Store the fetched post
+          state.selectedPost = action.payload;
         }
       )
       .addCase(postByIdThunk.rejected, (state, action: PayloadAction<any>) => {
