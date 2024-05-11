@@ -5,7 +5,6 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./slices/auth.slice";
 import userReducer from "./slices/user.slice";
 import postReducer from "./slices/post.slice";
-import authorReducer from "./slices/author.slice";
 import commentReducer from "./slices/comment.slice";
 
 const persistConfig: PersistConfig<any> = {
@@ -21,7 +20,6 @@ const store = configureStore({
     auth: persistedAuthReducer,
     user: userReducer,
     post: postReducer,
-    author: authorReducer,
     comment: commentReducer,
   },
 });

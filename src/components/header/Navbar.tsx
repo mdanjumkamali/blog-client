@@ -1,17 +1,21 @@
 "use client";
-import { useAppSelector } from "@/redux/redux.hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/redux.hooks";
 import { Avatar } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import MobileMenu from "./MobileMenu";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { logoutThunk } from "@/redux/thunks/auth.thunk";
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
   const avatar = useAppSelector((state) => state.user.avatar);
   const path = usePathname();
   const avatarUrl = avatar || "https://github.com/shadcn.png";
+
   return (
     <div className="border px-10 lg:px-48 py-3 bg-white bg-opacity-20 shadow-lg shadow-black/10 backdrop-blur-sm sticky top-0">
       <div className="flex items-center justify-between my-y">
@@ -59,13 +63,22 @@ const Navbar = () => {
               <Button asChild>
                 <Link href="/dashboard">Dashboard</Link>
               </Button>
-              <Avatar>
-                <AvatarImage
-                  src={avatarUrl}
-                  alt="avatar"
-                  className="w-10 h-10 rounded-full cursor-pointer"
-                />
-              </Avatar>
+              <Popover>
+                <PopoverTrigger>
+                  <Avatar>
+                    <AvatarImage
+                      src={avatarUrl}
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full cursor-pointer"
+                    />
+                  </Avatar>
+                </PopoverTrigger>
+                <PopoverContent className="flex justify-center w-fit">
+                  <Button onClick={() => dispatch(logoutThunk())}>
+                    Logout
+                  </Button>
+                </PopoverContent>
+              </Popover>
             </div>
           ) : (
             <div className="flex gap-2">

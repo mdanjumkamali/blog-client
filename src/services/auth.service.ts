@@ -4,7 +4,7 @@ import { httpsClient } from "./http.client";
 interface AuthResponse {
   token: string;
   user: {
-    id: number;
+    id: string;
     name: string;
     email: string;
     token: string;

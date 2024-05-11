@@ -13,7 +13,7 @@ export const commentByIdThunk = createAsyncThunk(
     try {
       const comment = await fetchCommentsService(id);
 
-      if (comment) {
+      if (Array.isArray(comment)) {
         return comment;
       }
 
@@ -37,6 +37,7 @@ export const createCommentThunk = createAsyncThunk(
       const newComment = {
         text: input.text,
         postId: input.postId,
+        authorId: input.authorId,
       };
 
       const comment = await createCommentService(newComment, input.postId);

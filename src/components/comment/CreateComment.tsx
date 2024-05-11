@@ -1,8 +1,5 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,10 +12,14 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useAppDispatch } from "@/redux/redux.hooks";
 import { createCommentThunk } from "@/redux/thunks/comment.thunk";
-import toast, { Toast } from "react-hot-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { z } from "zod";
 
 interface CreateCommentProps {
   postId: number;
+  authorId: string;
 }
 
 const FormSchema = z.object({
@@ -32,7 +33,7 @@ const FormSchema = z.object({
     }),
 });
 
-const CreateComment: React.FC<CreateCommentProps> = ({ postId }) => {
+const CreateComment: React.FC<CreateCommentProps> = ({ postId, authorId }) => {
   const dispatch = useAppDispatch();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -42,6 +43,7 @@ const CreateComment: React.FC<CreateCommentProps> = ({ postId }) => {
     const input = {
       text: data.comment,
       postId,
+      authorId,
     };
 
     try {

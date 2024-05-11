@@ -35,7 +35,7 @@ type TextEditorFormValues = TypeOf<typeof textEditorSchema>;
 const TextEditor = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const authorId = useAppSelector((state) => state.user.authorId);
+  const authorId = useAppSelector((state) => state.user.id);
   const form = useForm({
     resolver: zodResolver(textEditorSchema),
     defaultValues: {
